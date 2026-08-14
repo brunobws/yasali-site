@@ -33,10 +33,14 @@ test("server-renders the Yasali catalog page", async () => {
   const html = await response.text();
   assert.match(html, /<html lang="pt-BR">/i);
   assert.match(html, /<title>Yasali Perfumaria \| Perfumes em Sorocaba<\/title>/i);
-  assert.match(html, /Perfumes para descobrir no seu ritmo\./);
+  assert.match(html, /Catálogo para descobrir/);
+  assert.match(html, /Família olfativa/);
   assert.match(html, /Asad Bourbon/);
   assert.match(html, /Asad Elixir/);
   assert.match(html, /Attar Al Wesal/);
+  assert.match(html, /Khamrah Qahwa/);
+  assert.match(html, /Yara Tous/);
+  assert.match(html, /Consultar este perfume/);
   assert.match(html, /https:\/\/wa\.me\/5515981744696/);
   assert.match(html, /Ir para o conteúdo/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
@@ -64,5 +68,7 @@ test("keeps production assets and accessibility safeguards in place", async () =
   await assert.rejects(access(new URL("../app/_sites-preview", import.meta.url)));
   await access(new URL("../public/media/brand/yasali-logo-primary.png", import.meta.url));
   await access(new URL("../public/media/generated/hero/homepage-hero-asad-bourbon.webp", import.meta.url));
+  await access(new URL("../public/media/products/khamrah/khamrah-official-01.jpg", import.meta.url));
+  await access(new URL("../public/media/products/yara/yara-official-01.jpg", import.meta.url));
   assert.ok(templateRoot);
 });

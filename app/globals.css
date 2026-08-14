@@ -566,20 +566,59 @@ h3 {
   display: none;
 }
 
+.catalog-intro {
+  max-width: 680px;
+  margin: 20px 0 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.catalog-guide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -4px 0 30px;
+}
+
+.catalog-guide span {
+  padding: 8px 13px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: #fffaf3;
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+}
+
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px 12px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
 }
 
 .product-card {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
   min-width: 0;
+  border: 1px solid rgba(126, 102, 82, 0.18);
+  border-radius: 22px;
+  background: var(--color-surface);
+  box-shadow: 0 16px 45px rgba(62, 42, 30, 0.055);
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 24px 60px rgba(62, 42, 30, 0.1);
+  transform: translateY(-4px);
 }
 
 .product-image {
+  position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  border-radius: 16px 16px 8px 8px;
   background: var(--color-warm);
 }
 
@@ -590,24 +629,93 @@ h3 {
   transition: transform 350ms ease;
 }
 
+.product-image-contain {
+  background: linear-gradient(145deg, #f2ece3, #e8dfd2);
+}
+
+.product-image-contain img {
+  object-fit: contain;
+}
+
 .product-card:hover .product-image img {
   transform: scale(1.025);
 }
 
+.product-availability {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 5px 18px rgba(42, 28, 20, 0.08);
+  color: var(--color-deep);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
 .product-info {
-  padding: 16px 4px 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 22px;
 }
 
 .product-label {
-  margin-bottom: 6px;
+  margin-bottom: 7px;
 }
 
 .product-info h3 {
-  font-size: clamp(1.35rem, 5vw, 1.85rem);
+  margin-bottom: 9px;
+  font-size: clamp(1.7rem, 6vw, 2.15rem);
 }
 
-.product-info a {
-  margin-top: 8px;
+.product-family {
+  margin-bottom: 0;
+  color: var(--color-accent-hover);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.product-description {
+  margin: 18px 0 16px;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.product-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.product-notes li {
+  padding: 6px 9px;
+  border-radius: 7px;
+  background: var(--color-background);
+  color: #55483f;
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.product-info .product-cta {
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid var(--color-border);
   color: var(--color-accent-hover);
 }
 
@@ -1065,18 +1173,8 @@ h3 {
   }
 
   .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 40px 20px;
-  }
-
-  .product-info {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .product-info a {
-    margin-top: 0;
   }
 
   .footer-grid {
@@ -1201,15 +1299,7 @@ h3 {
   }
 
   .product-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .product-info {
-    display: block;
-  }
-
-  .product-info a {
-    margin-top: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .editorial-grid {
@@ -1251,6 +1341,16 @@ h3 {
 
   .final-cta {
     padding-block: 104px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .product-info h3 {
+    font-size: 1.72rem;
   }
 }
 

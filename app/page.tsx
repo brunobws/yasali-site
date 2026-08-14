@@ -6,23 +6,99 @@ const whatsappUrl =
 const products = [
   {
     name: "Asad Bourbon",
+    brand: "Lattafa",
+    gender: "Unissex",
+    family: "Ambarado · Especiado",
+    description:
+      "Especiarias luminosas encontram cacau e baunilha bourbon em uma assinatura quente e sofisticada.",
+    notes: ["Pimenta-rosa", "Cacau", "Baunilha bourbon"],
     image: "/media/products/asad-bourbon/asad-bourbon-front-01.jpg",
     alt: "Frasco e caixa do perfume Asad Bourbon",
+    imageFit: "cover",
   },
   {
     name: "Asad",
+    brand: "Lattafa",
+    gender: "Masculino",
+    family: "Ambarado · Especiado",
+    description:
+      "Uma abertura especiada com abacaxi e tabaco evolui para café, íris e madeiras quentes.",
+    notes: ["Pimenta-preta", "Café", "Baunilha"],
     image: "/media/products/asad/asad-front-01.jpg",
     alt: "Frasco e caixa do perfume Asad",
+    imageFit: "cover",
   },
   {
     name: "Asad Elixir",
+    brand: "Lattafa",
+    gender: "Masculino",
+    family: "Amadeirado · Especiado",
+    description:
+      "Açafrão e grapefruit abrem caminho para tabaco, cedro e uma base seca e envolvente.",
+    notes: ["Açafrão", "Tabaco", "Âmbar seco"],
     image: "/media/products/asad-elixir/asad-elixir-front-01.jpg",
     alt: "Frasco e caixa do perfume Asad Elixir",
+    imageFit: "cover",
   },
   {
     name: "Attar Al Wesal",
+    brand: "Al Wataniah",
+    gender: "Unissex",
+    family: "Oriental · Especiado",
+    description:
+      "Fresco e aromático na saída, ganha calor com canela, baunilha escura, âmbar e cedro.",
+    notes: ["Lavanda", "Canela", "Baunilha"],
     image: "/media/products/attar-al-wesal/attar-al-wesal-front-01.jpg",
     alt: "Frasco e caixa do perfume Attar Al Wesal",
+    imageFit: "cover",
+  },
+  {
+    name: "Khamrah",
+    brand: "Lattafa",
+    gender: "Unissex",
+    family: "Aromático · Especiado",
+    description:
+      "Canela e noz-moscada envolvem um coração gourmand de tâmaras e praliné, sobre baunilha e âmbar.",
+    notes: ["Canela", "Tâmaras", "Baunilha"],
+    image: "/media/products/khamrah/khamrah-official-01.jpg",
+    alt: "Frasco e caixa do perfume Khamrah",
+    imageFit: "contain",
+  },
+  {
+    name: "Khamrah Qahwa",
+    brand: "Lattafa",
+    gender: "Unissex",
+    family: "Gourmand · Especiado",
+    description:
+      "Especiarias quentes, praliné e frutas cristalizadas terminam em café arábica e baunilha.",
+    notes: ["Cardamomo", "Praliné", "Café"],
+    image: "/media/products/khamrah-qahwa/khamrah-qahwa-official-01.jpg",
+    alt: "Frasco e caixa do perfume Khamrah Qahwa",
+    imageFit: "contain",
+  },
+  {
+    name: "Yara",
+    brand: "Lattafa",
+    gender: "Feminino",
+    family: "Âmbar · Baunilha",
+    description:
+      "Uma fragrância cremosa e delicada, com frutas tropicais, flores macias e fundo de baunilha.",
+    notes: ["Orquídea", "Notas tropicais", "Baunilha"],
+    image: "/media/products/yara/yara-official-01.jpg",
+    alt: "Frasco e caixa do perfume Yara",
+    imageFit: "contain",
+  },
+  {
+    name: "Yara Tous",
+    brand: "Lattafa",
+    gender: "Feminino",
+    family: "Floral · Tropical",
+    description:
+      "Manga, coco e maracujá encontram flores luminosas e uma base macia de baunilha e musk.",
+    notes: ["Manga", "Coco", "Baunilha"],
+    image: "/media/products/yara-tous/yara-tous-official-01.jpg",
+    alt: "Frasco e caixa do perfume Yara Tous",
+    imageFit: "contain",
   },
 ];
 
@@ -176,16 +252,25 @@ export default function Home() {
           <div className="section-heading section-heading-row">
             <div>
               <p className="eyebrow">Seleção Yasali</p>
-              <h2 id="products-title">Em destaque</h2>
+              <h2 id="products-title">Catálogo para descobrir</h2>
+              <p className="catalog-intro">
+                Compare estilos, famílias olfativas e notas marcantes. A Yasali ajuda você a transformar interesse em uma escolha segura.
+              </p>
             </div>
             <a className="text-link" href={whatsappUrl} target="_blank" rel="noreferrer">
               Ver disponibilidade <Arrow />
             </a>
           </div>
+          <div className="catalog-guide" aria-label="Informações disponíveis no catálogo">
+            <span>Família olfativa</span>
+            <span>Perfil de uso</span>
+            <span>Notas em destaque</span>
+            <span>Atendimento personalizado</span>
+          </div>
           <div className="product-grid">
             {products.map((product) => (
               <article className="product-card" key={product.name}>
-                <div className="product-image">
+                <div className={`product-image product-image-${product.imageFit}`}>
                   <img
                     src={product.image}
                     alt={product.alt}
@@ -193,14 +278,20 @@ export default function Home() {
                     height="1440"
                     loading="lazy"
                   />
+                  <span className="product-availability">Sob consulta</span>
                 </div>
                 <div className="product-info">
-                  <div>
-                    <p className="product-label">Perfume</p>
+                  <div className="product-heading">
+                    <p className="product-label">{product.brand} · {product.gender}</p>
                     <h3>{product.name}</h3>
+                    <p className="product-family">{product.family}</p>
                   </div>
-                  <a href={`${whatsappUrl}%20Tenho%20interesse%20no%20${encodeURIComponent(product.name)}.`} target="_blank" rel="noreferrer" aria-label={`Perguntar sobre ${product.name} no WhatsApp`}>
-                    Quero conhecer <Arrow />
+                  <p className="product-description">{product.description}</p>
+                  <ul className="product-notes" aria-label={`Notas em destaque de ${product.name}`}>
+                    {product.notes.map((note) => <li key={note}>{note}</li>)}
+                  </ul>
+                  <a className="product-cta" href={`${whatsappUrl}%20Tenho%20interesse%20no%20${encodeURIComponent(product.name)}%20e%20gostaria%20de%20saber%20a%20disponibilidade.`} target="_blank" rel="noreferrer" aria-label={`Consultar ${product.name} no WhatsApp`}>
+                    Consultar este perfume <Arrow />
                   </a>
                 </div>
               </article>
