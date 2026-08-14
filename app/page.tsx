@@ -30,12 +30,29 @@ function Arrow() {
   return <span aria-hidden="true">→</span>;
 }
 
+function InstagramMark() {
+  return (
+    <span className="instagram-mark" aria-hidden="true">
+      <span />
+    </span>
+  );
+}
+
 export default function Home() {
   return (
     <main id="conteudo">
       <a className="skip-link" href="#conteudo">
         Ir para o conteúdo
       </a>
+
+      <div className="announcement-bar">
+        <div className="container announcement-inner">
+          <p>Perfumes árabes, importados e decants em Sorocaba</p>
+          <a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">
+            <InstagramMark /> @yasali.perfumaria
+          </a>
+        </div>
+      </div>
 
       <header className="site-header">
         <div className="container header-inner">
@@ -51,14 +68,15 @@ export default function Home() {
           </a>
 
           <nav className="desktop-nav" aria-label="Navegação principal">
-            <a href="#categorias">Categorias</a>
-            <a href="#destaques">Em destaque</a>
+            <a href="#destaques">Perfumes</a>
             <a href="#decants">Decants</a>
-            <a href="#sobre">Sobre</a>
+            <a className="nav-instagram" href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">
+              Instagram
+            </a>
           </nav>
 
           <a className="header-cta" href={whatsappUrl} target="_blank" rel="noreferrer">
-            Falar no WhatsApp
+            Pedir recomendação
           </a>
 
           <details className="mobile-menu">
@@ -68,12 +86,13 @@ export default function Home() {
               <span aria-hidden="true" />
             </summary>
             <nav aria-label="Navegação mobile">
-              <a href="#categorias">Categorias</a>
-              <a href="#destaques">Em destaque</a>
+              <a href="#destaques">Perfumes</a>
               <a href="#decants">Decants</a>
-              <a href="#sobre">Sobre</a>
+              <a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">
+                Instagram · @yasali.perfumaria
+              </a>
               <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                Falar no WhatsApp
+                Pedir recomendação
               </a>
             </nav>
           </details>
@@ -83,19 +102,22 @@ export default function Home() {
       <section className="hero" id="inicio" aria-labelledby="hero-title">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Perfumaria em Sorocaba</p>
-            <h1 id="hero-title">Perfumes para descobrir no seu ritmo.</h1>
+            <p className="eyebrow">Sua perfumaria em Sorocaba</p>
+            <h1 id="hero-title">Encontre um perfume com a sua presença.</h1>
             <p className="hero-text">
-              Uma seleção de perfumes árabes, importados e decants com atendimento próximo para ajudar na sua escolha.
+              Conte o que você gosta e receba uma indicação da Yasali. Perfumes árabes, importados e decants para descobrir sem pressa — e sem escolher no escuro.
             </p>
             <div className="button-row">
-              <a className="button button-primary" href="#destaques">
-                Explorar perfumes
+              <a className="button button-primary" href={whatsappUrl} target="_blank" rel="noreferrer">
+                Quero uma indicação
               </a>
-              <a className="button button-secondary" href={whatsappUrl} target="_blank" rel="noreferrer">
-                Falar no WhatsApp
-              </a>
+              <a className="button button-secondary" href="#destaques">Ver perfumes</a>
             </div>
+            <ul className="hero-benefits" aria-label="Diferenciais Yasali">
+              <li>Curadoria personalizada</li>
+              <li>Decants para experimentar</li>
+              <li>Atendimento direto</li>
+            </ul>
           </div>
           <figure className="hero-media">
             <img
@@ -105,7 +127,14 @@ export default function Home() {
               height="941"
               fetchPriority="high"
             />
-            <figcaption>Asad Bourbon</figcaption>
+            <figcaption>
+              <span>Em destaque</span>
+              <strong>Asad Bourbon</strong>
+            </figcaption>
+            <a className="hero-media-card" href={`${whatsappUrl}%20Quero%20uma%20indica%C3%A7%C3%A3o%20de%20perfume.`} target="_blank" rel="noreferrer">
+              <span>Não sabe qual escolher?</span>
+              <strong>A Yasali te ajuda ↗</strong>
+            </a>
           </figure>
         </div>
       </section>
@@ -114,26 +143,29 @@ export default function Home() {
         <div className="container">
           <div className="section-heading section-heading-split">
             <div>
-              <p className="eyebrow">Encontre seu caminho</p>
-              <h2 id="categories-title">Explore por categoria</h2>
+              <p className="eyebrow">Comece por aqui</p>
+              <h2 id="categories-title">Qual é o seu momento?</h2>
             </div>
-            <p>Comece pelo tipo de perfume que você procura e converse com a Yasali para conhecer as opções disponíveis.</p>
+            <p>Escolher fica mais gostoso quando a conversa começa pela ocasião. Conte o que procura e receba opções mais alinhadas com você.</p>
           </div>
           <div className="category-grid">
-            <a className="category-card" href={whatsappUrl} target="_blank" rel="noreferrer">
+            <a className="category-card" href={`${whatsappUrl}%20Estou%20procurando%20um%20perfume%20para%20mim.`} target="_blank" rel="noreferrer">
               <span className="category-number">01</span>
-              <span className="category-name">Femininos</span>
-              <span className="category-link">Consultar opções <Arrow /></span>
+              <span className="category-name">Para mim</span>
+              <span className="category-description">Uma escolha que combine com seu estilo e sua presença.</span>
+              <span className="category-link">Receber indicações <Arrow /></span>
             </a>
-            <a className="category-card" href={whatsappUrl} target="_blank" rel="noreferrer">
+            <a className="category-card" href={`${whatsappUrl}%20Quero%20escolher%20um%20perfume%20para%20presentear.`} target="_blank" rel="noreferrer">
               <span className="category-number">02</span>
-              <span className="category-name">Masculinos</span>
-              <span className="category-link">Consultar opções <Arrow /></span>
+              <span className="category-name">Para presentear</span>
+              <span className="category-description">Conte sobre a pessoa e torne o presente mais especial.</span>
+              <span className="category-link">Encontrar um presente <Arrow /></span>
             </a>
             <a className="category-card category-card-warm" href="#decants">
               <span className="category-number">03</span>
-              <span className="category-name">Decants</span>
-              <span className="category-link">Conhecer <Arrow /></span>
+              <span className="category-name">Para experimentar</span>
+              <span className="category-description">Conheça novas fragrâncias em frascos menores.</span>
+              <span className="category-link">Descobrir decants <Arrow /></span>
             </a>
           </div>
         </div>
@@ -147,7 +179,7 @@ export default function Home() {
               <h2 id="products-title">Em destaque</h2>
             </div>
             <a className="text-link" href={whatsappUrl} target="_blank" rel="noreferrer">
-              Consultar catálogo <Arrow />
+              Ver disponibilidade <Arrow />
             </a>
           </div>
           <div className="product-grid">
@@ -168,12 +200,48 @@ export default function Home() {
                     <h3>{product.name}</h3>
                   </div>
                   <a href={`${whatsappUrl}%20Tenho%20interesse%20no%20${encodeURIComponent(product.name)}.`} target="_blank" rel="noreferrer" aria-label={`Perguntar sobre ${product.name} no WhatsApp`}>
-                    Perguntar <Arrow />
+                    Quero conhecer <Arrow />
                   </a>
                 </div>
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section buying-path" id="como-comprar" aria-labelledby="buying-path-title">
+        <div className="container buying-path-grid">
+          <div className="buying-path-heading">
+            <p className="eyebrow">Do interesse à escolha</p>
+            <h2 id="buying-path-title">Seu perfume em três passos simples.</h2>
+            <p>Sem formulários longos ou compra impessoal. A conversa acontece diretamente com a Yasali.</p>
+            <a className="button button-light" href={whatsappUrl} target="_blank" rel="noreferrer">
+              Começar agora
+            </a>
+          </div>
+          <ol className="buying-steps">
+            <li>
+              <span>01</span>
+              <div>
+                <h3>Conte o que você gosta</h3>
+                <p>Fale sobre ocasião, estilo ou algum perfume que já usa.</p>
+              </div>
+            </li>
+            <li>
+              <span>02</span>
+              <div>
+                <h3>Receba opções</h3>
+                <p>A Yasali apresenta perfumes e decants alinhados ao que procura.</p>
+              </div>
+            </li>
+            <li>
+              <span>03</span>
+              <div>
+                <h3>Escolha com confiança</h3>
+                <p>Tire suas dúvidas, consulte a disponibilidade e confirme pelo WhatsApp.</p>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
 
@@ -189,13 +257,13 @@ export default function Home() {
             />
           </div>
           <div className="editorial-copy">
-            <p className="eyebrow">Escolha com calma</p>
-            <h2 id="editorial-title">Uma curadoria que aproxima você de novos perfumes.</h2>
+            <p className="eyebrow">Curadoria Yasali</p>
+            <h2 id="editorial-title">Mais do que ver um frasco. Encontrar uma sensação.</h2>
             <p>
-              A Yasali reúne perfumes árabes e importados em uma seleção feita para ser explorada com atenção — seja para você, para presentear ou para conhecer algo novo.
+              Perfume é memória, presença e descoberta. A Yasali reúne perfumes árabes e importados para quem quer conhecer algo novo, presentear ou renovar sua assinatura.
             </p>
             <p>
-              Pelo WhatsApp, você pode consultar os itens disponíveis e receber um atendimento direto antes de decidir.
+              No atendimento, você recebe contexto para comparar as opções e decidir com mais segurança.
             </p>
             <a className="text-link" href={whatsappUrl} target="_blank" rel="noreferrer">
               Conversar com a Yasali <Arrow />
@@ -207,10 +275,10 @@ export default function Home() {
       <section className="section decants" id="decants" aria-labelledby="decants-title">
         <div className="container decants-grid">
           <div className="decants-copy">
-            <p className="eyebrow">Frascos menores</p>
-            <h2 id="decants-title">Decants para ampliar suas descobertas.</h2>
+            <p className="eyebrow">Experimente primeiro</p>
+            <h2 id="decants-title">Descubra mais perfumes, um decant de cada vez.</h2>
             <p>
-              Uma forma prática de conhecer perfumes em frascos menores. Consulte pelo atendimento quais opções e volumes estão disponíveis no momento.
+              Frascos menores ajudam você a sentir a evolução do perfume na pele e comparar opções antes de escolher. Consulte os aromas e volumes disponíveis.
             </p>
             <a className="button button-primary" href={whatsappUrl} target="_blank" rel="noreferrer">
               Conhecer os decants
@@ -229,35 +297,43 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section trust" aria-labelledby="trust-title">
-        <div className="container trust-grid">
-          <div>
-            <p className="eyebrow">Perto de você</p>
-            <h2 id="trust-title">Yasali Perfumaria, em Sorocaba.</h2>
+      <section className="section instagram-section" id="instagram" aria-labelledby="instagram-title">
+        <div className="container instagram-grid">
+          <div className="instagram-copy">
+            <p className="eyebrow">Yasali no Instagram</p>
+            <h2 id="instagram-title">Novidades, detalhes e inspirações para a sua próxima descoberta.</h2>
+            <p>Acompanhe os perfumes que chegam, veja os frascos de perto e mantenha sua lista de desejos sempre atualizada.</p>
+            <a className="instagram-button" href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">
+              <InstagramMark />
+              <span>
+                Siga no Instagram
+                <strong>@yasali.perfumaria</strong>
+              </span>
+              <Arrow />
+            </a>
           </div>
-          <div className="trust-copy">
-            <p>
-              Acompanhe novidades pelo Instagram e fale diretamente com a Yasali para consultar perfumes e decants.
-            </p>
-            <div className="trust-links">
-              <a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">
-                Instagram <Arrow />
-              </a>
-              <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                WhatsApp <Arrow />
-              </a>
-            </div>
+          <div className="instagram-gallery" aria-label="Prévia visual do Instagram da Yasali">
+            <a className="instagram-post instagram-post-tall" href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer" aria-label="Abrir Instagram da Yasali">
+              <img src="/media/products/asad-bourbon/asad-bourbon-in-hand-01.jpg" alt="Asad Bourbon em mãos" width="1080" height="1440" loading="lazy" />
+              <span className="instagram-post-label"><InstagramMark /> Ver perfil</span>
+            </a>
+            <a className="instagram-post" href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer" aria-label="Abrir Instagram da Yasali">
+              <img src="/media/products/asad-elixir/asad-elixir-in-hand-01.jpg" alt="Asad Elixir em mãos" width="1080" height="1440" loading="lazy" />
+            </a>
+            <a className="instagram-post" href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer" aria-label="Abrir Instagram da Yasali">
+              <img src="/media/products/attar-al-wesal/attar-al-wesal-in-hand-01.jpg" alt="Attar Al Wesal em mãos" width="1080" height="1440" loading="lazy" />
+            </a>
           </div>
         </div>
       </section>
 
       <section className="final-cta" aria-labelledby="cta-title">
         <div className="container final-cta-inner">
-          <p className="eyebrow">Atendimento direto</p>
-          <h2 id="cta-title">Encontrou um perfume que despertou sua curiosidade?</h2>
-          <p>Converse com a Yasali para consultar disponibilidade e tirar suas dúvidas.</p>
+          <p className="eyebrow">Sua descoberta pode começar agora</p>
+          <h2 id="cta-title">Qual perfume combina com o seu momento?</h2>
+          <p>Conte um pouco do que você procura e receba uma indicação da Yasali pelo WhatsApp.</p>
           <a className="button button-light" href={whatsappUrl} target="_blank" rel="noreferrer">
-            Falar no WhatsApp
+            Quero uma indicação
           </a>
         </div>
       </section>
@@ -271,13 +347,13 @@ export default function Home() {
             </div>
           </div>
           <nav aria-label="Links do rodapé">
-            <a href="#categorias">Categorias</a>
-            <a href="#destaques">Em destaque</a>
+            <a href="#categorias">Por onde começar</a>
+            <a href="#destaques">Perfumes</a>
             <a href="#decants">Decants</a>
           </nav>
           <div className="footer-contact">
             <p>Sorocaba — SP</p>
-            <a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">@yasali.perfumaria</a>
             <a href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp</a>
           </div>
         </div>
@@ -286,6 +362,12 @@ export default function Home() {
           <p>Catálogo sujeito à confirmação pelo atendimento.</p>
         </div>
       </footer>
+
+      <a className="mobile-sticky-cta" href={whatsappUrl} target="_blank" rel="noreferrer">
+        <span>WhatsApp</span>
+        <strong>Peça uma indicação</strong>
+        <Arrow />
+      </a>
     </main>
   );
 }
