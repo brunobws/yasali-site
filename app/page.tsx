@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element -- Native images avoid a vinext hydration incompatibility. */
 
 const whatsappUrl =
   "https://wa.me/5515981744696?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Yasali%20e%20gostaria%20de%20conhecer%20os%20perfumes.";
@@ -41,12 +41,11 @@ export default function Home() {
         <div className="container header-inner">
           <a className="brand" href="#inicio" aria-label="Yasali Perfumaria — início">
             <span className="brand-image" aria-hidden="true">
-              <Image
+              <img
                 src="/media/brand/yasali-logo-primary.png"
                 alt=""
                 width="796"
                 height="802"
-                sizes="118px"
               />
             </span>
           </a>
@@ -99,13 +98,12 @@ export default function Home() {
             </div>
           </div>
           <figure className="hero-media">
-            <Image
+            <img
               src="/media/generated/hero/homepage-hero-asad-bourbon.webp"
               alt="Asad Bourbon sobre bancada de pedra clara"
               width="1672"
               height="941"
               fetchPriority="high"
-              sizes="(max-width: 899px) calc(100vw - 40px), 60vw"
             />
             <figcaption>Asad Bourbon</figcaption>
           </figure>
@@ -156,13 +154,12 @@ export default function Home() {
             {products.map((product) => (
               <article className="product-card" key={product.name}>
                 <div className="product-image">
-                  <Image
+                  <img
                     src={product.image}
                     alt={product.alt}
                     width="1080"
                     height="1440"
                     loading="lazy"
-                    sizes="(max-width: 899px) 50vw, 25vw"
                   />
                 </div>
                 <div className="product-info">
@@ -183,13 +180,12 @@ export default function Home() {
       <section className="section editorial" id="sobre" aria-labelledby="editorial-title">
         <div className="container editorial-grid">
           <div className="editorial-media">
-            <Image
+            <img
               src="/media/generated/lifestyle/attar-al-wesal-lifestyle-01.webp"
               alt="Attar Al Wesal em uma prateleira de pedra clara"
               width="1086"
               height="1448"
               loading="lazy"
-              sizes="(max-width: 899px) calc(100vw - 40px), 42vw"
             />
           </div>
           <div className="editorial-copy">
@@ -221,13 +217,12 @@ export default function Home() {
             </a>
           </div>
           <div className="decants-media">
-            <Image
+            <img
               src="/media/generated/lifestyle/decants-pastel-lifestyle-01.webp"
               alt="Composição editorial com seis frascos pequenos em tons pastel"
               width="1536"
               height="1024"
               loading="lazy"
-              sizes="(max-width: 899px) calc(100vw - 40px), 55vw"
             />
             <p>Imagem editorial. Consulte os frascos disponíveis.</p>
           </div>

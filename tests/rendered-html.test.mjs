@@ -53,7 +53,7 @@ test("keeps production assets and accessibility safeguards in place", async () =
 
   assert.match(page, /homepage-hero-asad-bourbon\.webp/);
   assert.match(page, /assets|media\/products/);
-  assert.match(page, /import Image from "next\/image"/);
+  assert.match(page, /Native images avoid a vinext hydration incompatibility/);
   assert.match(page, /loading="lazy"/);
   assert.match(page, /aria-label="Abrir menu"/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
