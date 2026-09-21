@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import { getPageMetadata, serializeJsonLd } from '../lib/site-metadata';
+import Analytics from '../components/Analytics.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+  faviconVersion?: string;
+  faviconSvg?: string;
+  faviconPng?: string;
+  appleTouchIcon?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  imageAlt,
+  noindex = false,
+  faviconVersion = '1',
+  faviconSvg = '/favicon.svg',
+  faviconPng = '/favicon-48.png',
+  appleTouchIcon = '/apple-touch-icon.png',
+} = Astro.props;
+const withVersion = (path: string) => `${path}?v=${encodeURIComponent(faviconVersion)}`;
+const metadata = getPageMetadata({ title, description, image, imageAlt, noindex, pathname: Astro.url.pathname });
+---
+
+<!doctype html>
+<html lang={metadata.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={metadata.description} />
+    <meta name="factory-publication-status" content={metadata.publicationStatus} />
+    <link rel="icon" href={withVersion(faviconSvg)} type="image/svg+xml" sizes="any" />
+    <link rel="icon" href={withVersion(faviconPng)} type="image/png" sizes="48x48" />
+    <link rel="shortcut icon" href={withVersion(faviconPng)} type="image/png" />
+    <link rel="apple-touch-icon" href={withVersion(appleTouchIcon)} sizes="180x180" />
+    {metadata.noindex && <meta name="robots" content="noindex, nofollow" />}
+    {metadata.canonical && <link rel="canonical" href={metadata.canonical} />}
+    {metadata.sitemap && <link rel="sitemap" href={metadata.sitemap} type="application/xml" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={metadata.locale} />
+    <meta property="og:title" content={metadata.title} />
+    <meta property="og:description" content={metadata.description} />
+    {metadata.canonical && <meta property="og:url" content={metadata.canonical} />}
+    {metadata.image && <meta property="og:image" content={metadata.image} />}
+    {metadata.imageAlt && <meta property="og:image:alt" content={metadata.imageAlt} />}
+    {metadata.image && <meta name="twitter:card" content="summary_large_image" />}
+    <meta name="twitter:title" content={metadata.title} />
+    <meta name="twitter:description" content={metadata.description} />
+    {metadata.image && <meta name="twitter:image" content={metadata.image} />}
+    {metadata.organizationSchema && <script is:inline type="application/ld+json" set:html={serializeJsonLd(metadata.organizationSchema)} />}
+    <title>{metadata.title}</title>
+  </head>
+  <body>
+    <slot />
+    <Analytics />
+  </body>
+</html>

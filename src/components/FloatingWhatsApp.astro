@@ -1,0 +1,22 @@
+---
+import { createWhatsAppHref } from '../lib/contact';
+
+interface Props { phone: string; message?: string; label?: string; offsetForBackToTop?: boolean; }
+const { phone, message = '', label = 'Falar pelo WhatsApp', offsetForBackToTop = false } = Astro.props;
+const href = createWhatsAppHref(phone, message);
+---
+
+<a class:list={['floating-whatsapp', { 'has-back-to-top': offsetForBackToTop }]} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} data-analytics-event="whatsapp_click">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z" />
+    <path d="M9 8.7c.2 2.8 2.1 4.7 4.9 5" />
+  </svg>
+</a>
+
+<style>
+  .floating-whatsapp { position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 20; display: grid; width: 3.5rem; height: 3.5rem; place-items: center; border-radius: 999px; color: white; background: #128c3e; box-shadow: 0 .5rem 1.5rem rgb(0 0 0 / 20%); }
+  .floating-whatsapp.has-back-to-top { bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 4rem); }
+  .floating-whatsapp svg { width: 1.6rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+  @media (hover: hover) and (pointer: fine) { .floating-whatsapp { transition: transform 180ms ease; } .floating-whatsapp:hover { transform: translateY(-.18rem); } }
+  @media (prefers-reduced-motion: reduce) { .floating-whatsapp { transition: none; } }
+</style>
