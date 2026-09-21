@@ -1,0 +1,80 @@
+{
+  "factoryVersion": "0.6.0",
+  "profile": "standard",
+  "locale": "pt-BR",
+  "defaultStack": {
+    "framework": "Astro",
+    "typescript": true,
+    "output": "static"
+  },
+  "qualityGates": {
+    "viewports": [320, 390, 430, 768, 1440],
+    "touchTargetMinPx": 44,
+    "performance": {
+      "lighthouseMobileTarget": 90,
+      "lcpMaxMs": 2500,
+      "clsMax": 0.1,
+      "inpMaxMs": 200,
+      "heroMobileTargetKb": 250,
+      "heroDesktopTargetKb": 400,
+      "belowFoldImageTargetKb": 200
+    }
+  },
+  "discovery": {
+    "standard": "standards/DISCOVERY_STANDARD.md",
+    "requirePendingReview": true,
+    "pendingRule": "unresolved-and-not-resolvable-and-material"
+  },
+  "integrations": {
+    "availabilityDeclaration": {
+      "command": "node scripts/check-integrations.mjs --phase <fase> --available <capacidade,...>",
+      "environmentVariable": "VELOZEWEB_AVAILABLE_INTEGRATIONS",
+      "note": "A declaração informa capacidades disponíveis nesta execução; ela não instala, configura nem autentica integrações."
+    },
+    "skills": {
+      "ui-ux-pro-max": {
+        "phases": ["2b", "3a", "3b", "4"],
+        "level": "expected",
+        "fallback": "Aplicar os padrões e artefatos visuais da Factory; registrar a limitação no QA."
+      },
+      "humanizer": {
+        "phases": ["2a", "4"],
+        "level": "expected",
+        "fallback": "Revisão humana de clareza, naturalidade e fidelidade aos fatos aprovados."
+      },
+      "imagegen": {
+        "phases": ["1", "3b"],
+        "level": "conditional",
+        "fallback": "Usar somente mídia aprovada existente ou registrar a necessidade de novo asset."
+      },
+      "computer-use": {
+        "phases": ["3a", "4"],
+        "level": "expected",
+        "fallback": "Inspeção em navegador disponível e evidência visual equivalente, sem dispensar a verificação obrigatória."
+      }
+    },
+    "mcpCapabilities": {
+      "visualVerification": {
+        "phases": ["3a", "3b", "4"],
+        "level": "required",
+        "anyOf": ["browser", "playwright"],
+        "fallback": "Não há fallback que permita aprovação: sem Browser ou Playwright, a fase pode ser trabalhada, mas não encerrada."
+      },
+      "figma": {
+        "phases": ["2b", "3a"],
+        "level": "optional",
+        "fallback": "Mockup local, protótipo mínimo ou screenshots revisáveis."
+      },
+      "github": {
+        "phases": ["4", "release"],
+        "level": "optional",
+        "fallback": "Git CLI, após autorização explícita para commit e push."
+      }
+    }
+  },
+  "release": {
+    "trackDist": false,
+    "requireExplicitCommit": true,
+    "requireExplicitPush": true
+  }
+}

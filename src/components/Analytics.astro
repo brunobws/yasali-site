@@ -1,0 +1,104 @@
+---
+import { siteConfig } from '../config/site';
+import { hasAnalytics } from '../lib/analytics';
+
+const analytics = siteConfig.analytics;
+const active = hasAnalytics(analytics);
+---
+
+{active && (
+  <>
+    <div class="analytics-consent" data-vw-analytics-root data-ga4={analytics.ga4MeasurementId} data-meta={analytics.metaPixelId} data-ads={analytics.googleAdsId} data-consent-required={analytics.consentRequired ? 'true' : 'false'} hidden>
+      <div class="analytics-consent__content" role="dialog" aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-description">
+        <strong id="analytics-consent-title">Métricas do site</strong>
+        <p id="analytics-consent-description">Usamos métricas opcionais para entender a navegação e melhorar o site. Você pode aceitar ou recusar.</p>
+        <div class="analytics-consent__actions">
+          <button type="button" data-analytics-consent="accept">Aceitar métricas</button>
+          <button type="button" data-analytics-consent="reject">Recusar</button>
+        </div>
+      </div>
+    </div>
+    <script is:inline>
+      (() => {
+        const root = document.querySelector('[data-vw-analytics-root]');
+        if (!root) return;
+        const storageKey = 'vw_analytics_consent';
+        const providers = {
+          ga4: root.getAttribute('data-ga4') || '',
+          meta: root.getAttribute('data-meta') || '',
+          ads: root.getAttribute('data-ads') || '',
+        };
+        const allowedEvents = new Set(['cta_primary', 'whatsapp_click', 'phone_click', 'form_submit_success', 'external_destination']);
+        const safeValue = (value) => String(value ?? '').replace(/[^a-zA-Z0-9_.:/ -]/g, '').slice(0, 80);
+        const loadScript = (src, id) => {
+          if (document.getElementById(id)) return;
+          const script = document.createElement('script');
+          script.id = id;
+          script.async = true;
+          script.src = src;
+          document.head.appendChild(script);
+        };
+        const loadProviders = () => {
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+          if (providers.ga4 || providers.ads) {
+            loadScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(providers.ga4 || providers.ads)}`, 'vw-gtag-script');
+            window.gtag('js', new Date());
+            if (providers.ga4) window.gtag('config', providers.ga4, { anonymize_ip: true });
+            if (providers.ads) window.gtag('config', providers.ads);
+          }
+          if (providers.meta) {
+            window.fbq = window.fbq || function () { window.fbq.callMethod ? window.fbq.callMethod.apply(window.fbq, arguments) : window.fbq.queue.push(arguments); };
+            window.fbq.push = window.fbq;
+            window.fbq.loaded = true;
+            window.fbq.version = '2.0';
+            window.fbq.queue = [];
+            loadScript('https://connect.facebook.net/en_US/fbevents.js', 'vw-meta-script');
+            window.fbq('init', providers.meta);
+            window.fbq('track', 'PageView');
+          }
+        };
+        const track = (name, params = {}) => {
+          if (!allowedEvents.has(name) || localStorage.getItem(storageKey) !== 'accepted') return;
+          const safeParams = Object.fromEntries(Object.entries(params).map(([key, value]) => [key, safeValue(value)]));
+          if (providers.ga4 || providers.ads) window.gtag?.('event', name, safeParams);
+          if (providers.meta) window.fbq?.('trackCustom', name, safeParams);
+          window.dispatchEvent(new CustomEvent('vw:analytics-sent', { detail: { name } }));
+        };
+        window.addEventListener('vw:analytics', (event) => track(event.detail?.name, event.detail?.params));
+        document.addEventListener('click', (event) => {
+          const target = event.target.closest('[data-analytics-event], a[href]');
+          if (!target) return;
+          const explicit = target.getAttribute('data-analytics-event');
+          if (explicit) track(explicit, { label: target.getAttribute('aria-label') || target.textContent });
+          try {
+            const url = new URL(target.href, window.location.href);
+            if (url.origin !== window.location.origin && target.hasAttribute('data-analytics-external')) track('external_destination', { host: url.hostname });
+          } catch {}
+        });
+        const choice = localStorage.getItem(storageKey);
+        if (choice === 'accepted') loadProviders();
+        if (!choice) root.hidden = false;
+        root.querySelector('[data-analytics-consent="accept"]')?.addEventListener('click', () => {
+          localStorage.setItem(storageKey, 'accepted');
+          root.hidden = true;
+          loadProviders();
+        });
+        root.querySelector('[data-analytics-consent="reject"]')?.addEventListener('click', () => {
+          localStorage.setItem(storageKey, 'rejected');
+          root.hidden = true;
+          window.dispatchEvent(new CustomEvent('vw:analytics-consent-rejected'));
+        });
+      })();
+    </script>
+  </>
+)}
+
+<style>
+  .analytics-consent { position: fixed; inset-inline: 1rem; bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 50; display: grid; justify-items: center; pointer-events: none; }
+  .analytics-consent__content { max-width: 42rem; padding: 1rem 1.15rem; border: 1px solid color-mix(in srgb, CanvasText 18%, transparent); border-radius: .75rem; color: CanvasText; background: Canvas; box-shadow: 0 .75rem 2rem rgb(0 0 0 / 15%); pointer-events: auto; }
+  .analytics-consent p { margin: .4rem 0 .8rem; }
+  .analytics-consent__actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .analytics-consent button { min-height: 2.75rem; padding: .5rem .8rem; border: 1px solid currentColor; border-radius: .4rem; color: inherit; background: transparent; cursor: pointer; }
+  @media (prefers-reduced-motion: reduce) { .analytics-consent * { scroll-behavior: auto; } }
+</style>

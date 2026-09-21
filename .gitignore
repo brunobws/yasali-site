@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+assets/inbox/*
+!assets/inbox/.gitkeep
+*.log
+playwright-report/
+test-results/

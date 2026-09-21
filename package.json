@@ -1,0 +1,28 @@
+{
+  "name": "velozeweb-site-starter",
+  "version": "0.6.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:integrations": "node scripts/check-integrations.mjs",
+    "qa:security": "node scripts/security-qa.mjs",
+    "qa:integrity": "node scripts/release-integrity-qa.mjs",
+    "audit:dependencies": "npm audit --omit=dev --audit-level=high",
+    "test:visual": "playwright test --project=chromium",
+    "test:visual:update": "playwright test --project=chromium --update-snapshots",
+    "test:visual:webkit": "playwright test --project=webkit",
+    "qa": "npm run check && npm run build && node scripts/static-qa.mjs && npm run qa:security && npm run qa:integrity"
+  },
+  "dependencies": {
+    "astro": "^7.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.63.0",
+    "typescript": "^6.0.3"
+  }
+}
