@@ -22,21 +22,30 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const baseUrl = `${protocol}://${host}`;
   const title = "Yasali Perfumaria | Perfumes em Sorocaba";
-  const description = "Encontre perfumes árabes, importados e decants com a curadoria e o atendimento próximo da Yasali Perfumaria, em Sorocaba.";
+  const description = "Perfumes árabes, importados e decants em Sorocaba. Encontre uma fragrância para você com atendimento próximo da Yasali.";
   const socialImage = new URL("/og.png", baseUrl).toString();
 
   return {
     title,
     description,
+    alternates: { canonical: "/" },
+    manifest: "/site.webmanifest",
     icons: {
-      icon: "/media/brand/yasali-logo-primary.png",
-      shortcut: "/media/brand/yasali-logo-primary.png",
+      icon: [
+        { url: "/favicon.svg?v=3", type: "image/svg+xml" },
+        { url: "/favicon-16x16.png?v=2", sizes: "16x16", type: "image/png" },
+        { url: "/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
+        { url: "/favicon-48.png?v=3", sizes: "48x48", type: "image/png" },
+        { url: "/favicon.png?v=2", sizes: "512x512", type: "image/png" },
+      ],
+      shortcut: "/favicon.svg?v=3",
+      apple: [{ url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" }],
     },
     openGraph: {
       title,
       description,
       type: "website",
-      images: [{ url: socialImage, width: 1792, height: 896, alt: "Yasali Perfumaria — encontre um perfume com a sua presença" }],
+      images: [{ url: socialImage, width: 1792, height: 896, alt: "Yasali Perfumaria — perfumes árabes e importados" }],
     },
     twitter: {
       card: "summary_large_image",

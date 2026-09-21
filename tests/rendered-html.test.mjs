@@ -4,13 +4,13 @@ import test from "node:test";
 
 const templateRoot = new URL("../", import.meta.url);
 
-async function render() {
+async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", {
+    new Request(`http://localhost${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -38,13 +38,17 @@ test("server-renders the Yasali catalog page", async () => {
   assert.match(html, /Asad Bourbon/);
   assert.match(html, /Asad Elixir/);
   assert.match(html, /Attar Al Wesal/);
-  assert.match(html, /Khamrah Qahwa/);
-  assert.match(html, /Yara Tous/);
+  assert.match(html, /Fakhar Black/);
+  assert.match(html, /Royal Amber/);
+  assert.match(html, /R\$ 269,00/);
+  assert.doesNotMatch(html, /Khamrah Qahwa/);
+  assert.doesNotMatch(html, /Yara Tous/);
   assert.match(html, /Consultar este perfume/);
   assert.match(html, /https:\/\/wa\.me\/5515981744696/);
   assert.match(html, /Ir para o conteúdo/);
+  assert.match(html, /application\/ld\+json/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
-  assert.doesNotMatch(html, /R\$|mais vendido|avaliaç(?:ão|ões)|em estoque/i);
+  assert.doesNotMatch(html, /mais vendido|avaliaç(?:ão|ões)|em estoque/i);
 });
 
 test("keeps production assets and accessibility safeguards in place", async () => {
@@ -68,7 +72,22 @@ test("keeps production assets and accessibility safeguards in place", async () =
   await assert.rejects(access(new URL("../app/_sites-preview", import.meta.url)));
   await access(new URL("../public/media/brand/yasali-logo-primary.png", import.meta.url));
   await access(new URL("../public/media/generated/hero/homepage-hero-asad-bourbon.webp", import.meta.url));
-  await access(new URL("../public/media/products/khamrah/khamrah-official-01.jpg", import.meta.url));
-  await access(new URL("../public/media/products/yara/yara-official-01.jpg", import.meta.url));
+  await access(new URL("../public/media/products/khamrah/khamrah-front-01.jpg", import.meta.url));
+  await access(new URL("../public/media/products/fakhar-black/fakhar-black-front-01.jpg", import.meta.url));
+  await access(new URL("../public/media/products/ana-abiyedh/ana-abiyedh-front-01.jpg", import.meta.url));
   assert.ok(templateRoot);
+});
+
+test("server-renders an individual product page", async () => {
+  const response = await render("/produto/asad");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<title>Asad \| Yasali Perfumaria<\/title>/i);
+  assert.match(html, /Família Ambarado · Especiado/);
+  assert.match(html, /Notas em destaque/);
+  assert.match(html, /application\/ld\+json/);
+  assert.match(html, /canonical/);
+  assert.match(html, /Consultar disponibilidade/);
+  assert.match(html, /Perfume%3A%20Asad/);
+  assert.match(html, /Outras fragrâncias para comparar/);
 });

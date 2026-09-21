@@ -19,3 +19,9 @@ Produzidas em 13/08/2026 com a ferramenta integrada `image_gen`, usando as fotos
 **Entrada:** `../products/attar-al-wesal/attar-al-wesal-front-01.jpg`
 
 **Prompt final:** substituir somente parede e mesa por prateleira de limestone bege e reboco claro; preservar frasco, tampa, caixa, proporções, painel prateado, ornamentos e nome Attar Al Wesal; enquadramento vertical 4:5 levemente descentralizado; luz natural lateral, reflexos e sombras realistas, textura de vidro, papel e pedra; evitar acabamento CGI, sombras esmagadas, brilho mágico, fumaça, flores, excesso de dourado, objetos flutuantes, texto novo e marca d'água.
+
+## `lifestyle/perfume-discovery-still-life-01.png`
+
+**Entrada:** geração original para a seção de catálogo da landing page.
+
+**Prompt final:** composição editorial fotográfica com frascos genéricos sem rótulos, tiras olfativas de papel, superfície de limestone quente, tecido creme e luz suave de manhã; grupo de objetos à direita e espaço negativo à esquerda; paleta bege e creme, textura realista e clima acolhedor; evitar logos, marcas, texto, marca d'água, pessoas identificáveis, frascos reconhecíveis, aparência CGI e excesso de luxo.

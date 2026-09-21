@@ -1,4 +1,22 @@
-# vinext-starter
+# Yasali Perfumaria
+
+Site de catálogo da Yasali Perfumaria, mantido em Vinext/React e preparado para
+exportação estática para a Hostinger. Este repositório usa o processo e os
+portões de qualidade da VelozeWeb Site Factory, mas não migra a aplicação para
+Astro automaticamente.
+
+## Fluxo da factory
+
+- `client/`, `planning/` e `docs/`: contexto, estratégia, decisões, status e QA.
+- `prompts/`, `standards/`, `operator/` e `references/`: processo reutilizado da
+  factory.
+- `app/`: implementação do site em Vinext/React.
+- `public/`: identidade, ícones e imagens aprovadas do catálogo.
+- `scripts/`: validações e exportação estática para a Hostinger.
+
+Para gerar o pacote de publicação, use `npm run build:hostinger`. O diretório
+`dist/` é artefato gerado e permanece fora do Git; envie o conteúdo dele para o
+domínio temporário somente após os gates de QA passarem.
 
 A clean full-stack starter running on
 [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and

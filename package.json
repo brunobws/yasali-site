@@ -8,8 +8,16 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "build:hostinger": "npm run validate:catalog && npm run build && node scripts/export-static.mjs",
     "start": "vinext start",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs",
+    "test": "npm run validate:catalog && npm run build && node --test tests/rendered-html.test.mjs",
+    "validate:catalog": "node scripts/validate-catalog.mjs",
+    "validate:commercial": "node scripts/validate-commercial-claims.mjs",
+    "validate:static-seo": "node scripts/validate-static-seo.mjs",
+    "validate:qa": "node scripts/validate-qa.mjs",
+    "validate:factory-phase4": "node scripts/validate-factory-phase4.mjs",
+    "qa": "npm run lint && npm run build:hostinger && npm run validate:commercial && npm run validate:static-seo && npm run validate:qa && npm run validate:factory-phase4",
+    "audit:dependencies": "npm audit --omit=dev --audit-level=high",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate"
   },

@@ -38,3 +38,10 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+
+# Factory workflow
+/assets/inbox/*
+!/assets/inbox/.gitkeep
+/playwright-report/
+/test-results/
+*.log

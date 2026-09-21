@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "project": "yasali-perfumaria",
+  "factory": {
+    "defaultStack": {
+      "framework": "Astro",
+      "rendering": "static"
+    },
+    "stackException": {
+      "framework": "Vinext/React",
+      "reason": "Stack existente preservada até decisão explícita de migração",
+      "migration": "not-approved"
+    }
+  },
+  "runtime": {
+    "currentFramework": "Vinext/React",
+    "buildCommand": "npm run build",
+    "staticExportCommand": "npm run build:hostinger",
+    "testCommand": "npm test",
+    "lintCommand": "npm run lint"
+  },
+  "deployment": {
+    "currentTarget": "Hostinger",
+    "mode": "static",
+    "outputDirectory": "dist",
+    "publicUrl": "https://navajowhite-pigeon-349040.hostingersite.com",
+    "publicUrlStatus": "temporary-confirmed"
+  },
+  "content": {
+    "locale": "pt-BR",
+    "catalogSource": "app/data/products.json",
+    "catalogValidationCommand": "npm run validate:catalog",
+    "inventoryStatus": "needs-normalization",
+    "salesRankingStatus": "unconfirmed",
+    "stockStatus": "unconfirmed"
+  },
+  "governance": {
+    "phase": 9,
+    "approvalRequiredForNextPhase": true,
+    "doNotInventCommercialFacts": true
+  }
+}
