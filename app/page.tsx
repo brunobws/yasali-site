@@ -3,9 +3,16 @@
 /* eslint-disable @next/next/no-img-element -- Native images avoid a vinext hydration incompatibility. */
 
 import { products } from "./lib/catalog";
+import { FloatingSocials } from "./components/FloatingSocials";
 
 const whatsappUrl =
   "https://wa.me/5515981744696?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Yasali%20e%20gostaria%20de%20conhecer%20os%20perfumes.";
+
+const testimonials = [
+  { quote: "Eu não sabia nem por onde começar. Expliquei o que eu gostava e recebi opções que realmente combinavam comigo.", name: "Marina", location: "Sorocaba — SP" },
+  { quote: "O decant fez toda a diferença. Consegui testar com calma antes de escolher o frasco maior.", name: "Rafael", location: "Votorantim — SP" },
+  { quote: "Fui comprar um presente e o atendimento me ajudou a encontrar uma fragrância muito especial.", name: "Camila", location: "Sorocaba — SP" },
+];
 
 function Arrow() {
   return null;
@@ -20,6 +27,7 @@ function InstagramMark() {
 }
 
 export default function Home() {
+  const featuredProducts = products.filter((product) => product.featured).slice(0, 4);
   const catalogStructuredData = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -54,13 +62,12 @@ export default function Home() {
           <a className="brand" href="#inicio" aria-label="Yasali Perfumaria — início">
             <span className="brand-image" aria-hidden="true">
               <img
-                src="/media/brand/yasali-icon.svg"
+                src="/media/brand/yasali-logo-wordmark-hd.png"
                 alt=""
-                width="512"
-                height="512"
+                width="1847"
+                height="851"
               />
             </span>
-            <span className="brand-wordmark">Yasali <small>Perfumaria</small></span>
           </a>
 
           <nav className="desktop-nav" aria-label="Navegação principal">
@@ -136,6 +143,15 @@ export default function Home() {
       </section>
 
       <section className="section categories" id="categorias" aria-labelledby="categories-title">
+        <div className="categories-illustration" aria-hidden="true">
+          <img
+            src="/media/generated/illustration/fragrance-discovery-line-art-01.png"
+            alt=""
+            width="1024"
+            height="1024"
+            loading="lazy"
+          />
+        </div>
         <div className="container">
           <div className="section-heading section-heading-split">
             <div>
@@ -181,15 +197,26 @@ export default function Home() {
               Abrir catálogo <Arrow />
             </a>
           </div>
-          <figure className="catalog-invite-media">
-            <img
-              src="/media/generated/lifestyle/perfume-discovery-still-life-01.png"
-              alt="Composição com frascos e tiras olfativas sobre uma mesa clara"
-              width="1536"
-              height="1024"
-              loading="lazy"
-            />
-          </figure>
+          <div className="catalog-preview-grid" aria-label="Seleção de perfumes em destaque">
+            {featuredProducts.map((product) => (
+              <a className="catalog-preview-card" href={`/produto/${product.slug}/`} key={product.slug}>
+                <div className={`catalog-preview-image product-image-${product.imageFit}`}>
+                  <img src={product.image} alt={product.alt} width="1080" height="1440" loading="lazy" />
+                </div>
+                <div className="catalog-preview-info">
+                  <p>{product.brand} · {product.gender}</p>
+                  <h3>{product.name}</h3>
+                  <span>{product.family} · {product.usage}</span>
+                  <strong>{product.price}</strong>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div className="catalog-preview-action">
+            <a className="button button-primary" href="/catalogo">
+              Abrir catálogo completo <Arrow />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -226,6 +253,28 @@ export default function Home() {
               </div>
             </li>
           </ol>
+        </div>
+      </section>
+
+      <section className="section testimonials" aria-labelledby="testimonials-title">
+        <div className="container">
+          <div className="section-heading testimonials-heading">
+            <div>
+              <p className="eyebrow">Uma escolha mais tranquila</p>
+              <h2 id="testimonials-title">Perfume bom é aquele que faz sentido para você.</h2>
+            </div>
+            <p>Experiências de quem encontrou uma fragrância com mais conversa e menos dúvida.</p>
+          </div>
+          <div className="testimonials-grid">
+            {testimonials.map((testimonial) => (
+              <figure className="testimonial-card" key={testimonial.name}>
+                <span className="testimonial-mark" aria-hidden="true">“</span>
+                <blockquote>{testimonial.quote}</blockquote>
+                <figcaption><strong>{testimonial.name}</strong><span>{testimonial.location}</span></figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className="testimonials-note">Depoimentos ilustrativos — esta área será atualizada com avaliações reais da Yasali.</p>
         </div>
       </section>
 
@@ -276,7 +325,6 @@ export default function Home() {
               height="1024"
               loading="lazy"
             />
-            <p>Imagem editorial. Consulte os frascos disponíveis.</p>
           </div>
         </div>
       </section>
@@ -313,32 +361,44 @@ export default function Home() {
 
       <section className="final-cta" aria-labelledby="cta-title">
         <div className="container final-cta-inner">
-          <p className="eyebrow">Fale com a Yasali</p>
-          <h2 id="cta-title">Ainda não sabe qual escolher?</h2>
-          <p>Conte o que você gosta e receba algumas sugestões pelo WhatsApp.</p>
-          <a className="button button-light" href={whatsappUrl} target="_blank" rel="noreferrer">
-            Quero uma indicação
-          </a>
+          <div className="final-cta-copy">
+            <p className="eyebrow">Fale com a Yasali</p>
+            <h2 id="cta-title">Seu próximo perfume pode começar com uma conversa.</h2>
+            <p>Conte a ocasião, o estilo ou uma fragrância que você já gosta. A Yasali separa algumas opções para você comparar sem pressa.</p>
+            <a className="button button-light" href={whatsappUrl} target="_blank" rel="noreferrer">
+              Quero uma indicação
+            </a>
+          </div>
+          <div className="final-cta-note">
+            <span className="final-cta-note-label">Você pode pedir ajuda para</span>
+            <ul>
+              <li>Encontrar um perfume para você</li>
+              <li>Escolher um presente</li>
+              <li>Testar um decant antes do frasco</li>
+            </ul>
+            <span className="final-cta-note-foot">Atendimento direto pelo WhatsApp</span>
+          </div>
         </div>
       </section>
 
       <footer className="site-footer">
         <div className="container footer-grid">
           <div className="footer-brand">
-            <div>
-              <strong>Yasali Perfumaria</strong>
-              <p>Perfumes árabes, importados e decants.</p>
-            </div>
+            <span className="footer-kicker">Yasali</span>
+            <strong>Perfumaria</strong>
+            <p>Perfumes árabes, importados e decants escolhidos para fazer sentido para você.</p>
           </div>
-          <nav aria-label="Links do rodapé">
+          <nav className="footer-nav" aria-label="Links do rodapé">
+            <span className="footer-label">Explore</span>
             <a href="#categorias">Por onde começar</a>
-            <a href="/catalogo">Perfumes</a>
+            <a href="/catalogo">Ver catálogo</a>
             <a href="#decants">Decants</a>
           </nav>
           <div className="footer-contact">
+            <span className="footer-label">Fale com a Yasali</span>
             <p>Sorocaba — SP</p>
-            <a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">@yasali.perfumaria</a>
-            <a href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp</a>
+            <a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">Instagram <span>@yasali.perfumaria</span></a>
+            <a className="footer-whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer">Chamar no WhatsApp</a>
           </div>
         </div>
         <div className="container footer-bottom">
@@ -352,6 +412,7 @@ export default function Home() {
         <strong>Peça uma indicação</strong>
         <Arrow />
       </a>
+      <FloatingSocials />
     </main>
   );
 }

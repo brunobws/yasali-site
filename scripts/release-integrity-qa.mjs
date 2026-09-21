@@ -32,7 +32,12 @@ const localTargetExists = async (rawUrl) => {
     ? [`${normalized.replace(/\/$/, '')}/index.html`, normalized === '' ? 'index.html' : '']
     : [normalized];
   for (const candidate of candidates.filter(Boolean)) {
-    try { await access(new URL(`../dist/${candidate}`, import.meta.url)); return true; } catch {}
+    try {
+      await access(new URL(`../dist/${candidate}`, import.meta.url));
+      return true;
+    } catch {
+      // Candidate does not exist; continue checking the next static path.
+    }
   }
   return false;
 };

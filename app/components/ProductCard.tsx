@@ -8,6 +8,15 @@ interface ProductCardProps {
 
 export function ProductCard({ product, whatsappContext }: ProductCardProps) {
   const whatsappUrl = createWhatsAppUrl({ productName: product.name, gender: product.gender, usage: product.usage, family: product.family, ...whatsappContext, intent: "Gostaria de consultar este perfume." });
+  const familyText = product.family.toLocaleLowerCase("pt-BR");
+  const familyTone = familyText.includes("floral") || familyText.includes("frutado")
+    ? "floral"
+    : familyText.includes("cítrico") || familyText.includes("aquático") || familyText.includes("aromático")
+      ? "fresh"
+      : familyText.includes("amadeirado") || familyText.includes("especiado") || familyText.includes("oriental")
+        ? "woody"
+        : "warm";
+  const usageTone = product.usage === "Noite" ? "night" : product.usage === "Dia" ? "day" : "all";
   return (
     <article className="product-card">
       <div className={`product-image product-image-${product.imageFit}`}>
@@ -17,8 +26,8 @@ export function ProductCard({ product, whatsappContext }: ProductCardProps) {
         <div className="product-heading">
           <p className="product-label">{product.brand} · {product.gender}</p>
           <h3><a className="product-name-link" href={`/produto/${product.slug}/`}>{product.name}</a></h3>
-          <p className="product-family">{product.family}</p>
-          <span className="product-time-tag">{product.usage}</span>
+          <p className={`product-family family-tone-${familyTone}`}>{product.family}</p>
+          <span className={`product-time-tag usage-tone-${usageTone}`}>{product.usage}</span>
           <p className="product-volume">{product.volume}</p>
           <p className="product-price">{product.price}</p>
         </div>

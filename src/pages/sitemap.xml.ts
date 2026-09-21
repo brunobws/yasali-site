@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getPublicSitemapUrls } from '../lib/site-metadata';
 
-const xmlEscape = (value: string) => value.replace(/[<>&'\"]/g, (character) => ({
+const xmlEscape = (value: string) => value.replace(/[<>&'"]/g, (character) => ({
   '<': '&lt;',
   '>': '&gt;',
   '&': '&amp;',

@@ -63,6 +63,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
+      <head>
+        <link rel="icon" href="/favicon-32x32.png?v=4" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon-48.png?v=4" sizes="48x48" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" sizes="180x180" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
       <body className={`${montserrat.variable} ${cormorant.variable}`}>
         {children}
       </body>

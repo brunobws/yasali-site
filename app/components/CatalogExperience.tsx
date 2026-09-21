@@ -90,6 +90,11 @@ export function CatalogExperience() {
           <p className="eyebrow">Catálogo Yasali</p>
           <h1 id="catalog-page-title">Escolha seu próximo perfume.</h1>
           <p>Veja as opções da Yasali e filtre por perfil, momento, família olfativa ou presente.</p>
+          <div className="catalog-intro-meta" aria-label="Diferenciais do catálogo">
+            <span>{products.length} fragrâncias</span>
+            <span>Filtros por momento</span>
+            <span>Ajuda pelo WhatsApp</span>
+          </div>
           <a className="text-link" href={whatsappUrl} target="_blank" rel="noreferrer">Não sabe por onde começar? Fale com a Yasali</a>
         </div>
         <CatalogFilters searchTerm={searchTerm} genderFilter={genderFilter} usageFilter={usageFilter} familyFilter={familyFilter} giftOnly={giftOnly} sortOption={sortOption} familyOptions={familyOptions} hasActiveFilters={hasActiveFilters} onSearchChange={setSearchTerm} onGenderChange={setGenderFilter} onUsageChange={setUsageFilter} onFamilyChange={setFamilyFilter} onGiftChange={setGiftOnly} onSortChange={setSortOption} onClear={clearFilters} />

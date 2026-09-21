@@ -1,11 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
   <title id="title">Yasali Perfumaria</title>
-  <desc id="desc">Monograma dourado Y com uma flor sobre fundo marrom</desc>
-  <rect width="512" height="512" rx="96" fill="#35221d"/>
-  <g fill="none" stroke="#d7b35d" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M144 148h74M181 148v204M181 352h-42M181 352h42M146 148l35 58 35-58" stroke-width="16"/>
-    <path d="M181 206c62 18 104 15 151-25" stroke-width="10"/>
-    <path d="M278 189c-14-18-10-41 7-57 17 16 20 39 7 57 19-14 42-11 57 5-18 16-41 19-57 5 13 19 10 42-7 57-17-16-20-39-7-57-19 14-42 11-57-5 18-16 41-19 57-5Z" stroke-width="10"/>
-    <path d="M244 208c-14-13-17-31-9-45 16 5 26 20 23 37M244 208c16-10 34-8 45 4-12 12-30 13-45 4" stroke-width="8"/>
-  </g>
+  <desc id="desc">Ícone oficial da Yasali Perfumaria</desc>
+  <image href="/media/brand/yasali-icon.png" width="1024" height="1024" preserveAspectRatio="xMidYMid slice"/>
 </svg>

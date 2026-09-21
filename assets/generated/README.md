@@ -25,3 +25,9 @@ Produzidas em 13/08/2026 com a ferramenta integrada `image_gen`, usando as fotos
 **Entrada:** geração original para a seção de catálogo da landing page.
 
 **Prompt final:** composição editorial fotográfica com frascos genéricos sem rótulos, tiras olfativas de papel, superfície de limestone quente, tecido creme e luz suave de manhã; grupo de objetos à direita e espaço negativo à esquerda; paleta bege e creme, textura realista e clima acolhedor; evitar logos, marcas, texto, marca d'água, pessoas identificáveis, frascos reconhecíveis, aparência CGI e excesso de luxo.
+
+## `illustration/fragrance-discovery-line-art-01.png`
+
+**Entrada:** geração original para detalhe decorativo da seção de categorias.
+
+**Prompt final:** ilustração editorial minimalista em traço fino, com frasco genérico, ramo botânico, tiras olfativas e uma linha sutil sugerindo o aroma; papel marfim, tons sépia e dourado suave, composição arejada e artesanal; sem texto, logos, marcas, pessoas, frasco reconhecível, aparência de clip-art ou cores saturadas.
