@@ -67,7 +67,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <header className="product-page-header">
         <a className="product-back-link" href="/#destaques">Voltar ao catálogo</a>
-        <a className="product-page-brand" href="/" aria-label="Yasali Perfumaria — início"><img src="/media/brand/yasali-logo-wordmark-hd.png" alt="Yasali Perfumaria" width="1847" height="851" /></a>
+          <a className="product-page-brand" href="/" aria-label="Yasali Perfumaria — início"><img src="/media/brand/yasali-logo-wordmark-transparent.png" alt="Yasali Perfumaria" width="1847" height="851" /></a>
         <a className="product-page-instagram" href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer"><span className="instagram-mark" aria-hidden="true"><span /></span> Instagram</a>
       </header>
       <div className="product-page-container">

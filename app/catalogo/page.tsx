@@ -15,7 +15,7 @@ export default function CatalogoPage() {
       <a className="skip-link" href="#conteudo">Ir para o conteúdo</a>
       <div className="announcement-bar"><div className="container announcement-inner"><p>Perfumes árabes, importados e decants em Sorocaba</p></div></div>
       <header className="site-header"><div className="container header-inner">
-        <a className="brand" href="/" aria-label="Yasali Perfumaria — início"><span className="brand-image" aria-hidden="true"><img src="/media/brand/yasali-logo-wordmark-hd.png" alt="" width="1847" height="851" /></span></a>
+        <a className="brand" href="/" aria-label="Yasali Perfumaria — início"><span className="brand-image" aria-hidden="true"><img src="/media/brand/yasali-logo-wordmark-transparent.png" alt="" width="1847" height="851" /></span></a>
         <nav className="desktop-nav" aria-label="Navegação principal"><a href="/">Início</a><a href="/catalogo" aria-current="page">Catálogo</a><a className="nav-instagram" href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">Instagram</a></nav>
         <a className="header-cta" href="https://wa.me/5515981744696" target="_blank" rel="noreferrer">Pedir recomendação</a>
         <details className="mobile-menu"><summary aria-label="Abrir menu"><span aria-hidden="true" /><span aria-hidden="true" /><span aria-hidden="true" /></summary><nav aria-label="Navegação mobile"><a href="/">Início</a><a href="/catalogo">Catálogo</a><a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">Instagram · @yasali.perfumaria</a></nav></details>

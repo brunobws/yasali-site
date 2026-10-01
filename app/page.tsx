@@ -62,7 +62,7 @@ export default function Home() {
           <a className="brand" href="#inicio" aria-label="Yasali Perfumaria — início">
             <span className="brand-image" aria-hidden="true">
               <img
-                src="/media/brand/yasali-logo-wordmark-hd.png"
+                src="/media/brand/yasali-logo-wordmark-transparent.png"
                 alt=""
                 width="1847"
                 height="851"
