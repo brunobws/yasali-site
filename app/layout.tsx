@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import { headers } from "next/headers";
+import { Analytics } from "./components/Analytics";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -71,6 +72,7 @@ export default function RootLayout({
       </head>
       <body className={`${montserrat.variable} ${cormorant.variable}`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );

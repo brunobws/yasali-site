@@ -72,7 +72,8 @@ export default function Home() {
 
           <nav className="desktop-nav" aria-label="Navegação principal">
             <a href="/catalogo">Perfumes</a>
-            <a href="#decants">Decants</a>
+            <a href="/decants">Decants</a>
+            <a href="/body-splash">Body splash</a>
             <a className="nav-instagram" href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">
               Instagram
             </a>
@@ -90,7 +91,8 @@ export default function Home() {
             </summary>
             <nav aria-label="Navegação mobile">
               <a href="/catalogo">Perfumes</a>
-              <a href="#decants">Decants</a>
+              <a href="/decants">Decants</a>
+              <a href="/body-splash">Body splash</a>
               <a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">
                 Instagram · @yasali.perfumaria
               </a>
@@ -173,7 +175,7 @@ export default function Home() {
               <span className="category-description">Uma sugestão pensada para uma pessoa especial.</span>
               <span className="category-link">Encontrar um presente <Arrow /></span>
             </a>
-            <a className="category-card category-card-warm" href="#decants">
+            <a className="category-card category-card-warm" href="/decants">
               <span className="category-number">03</span>
               <span className="category-name">Para experimentar</span>
               <span className="category-description">Experimente antes de escolher o frasco inteiro.</span>
@@ -274,7 +276,6 @@ export default function Home() {
               </figure>
             ))}
           </div>
-          <p className="testimonials-note">Depoimentos ilustrativos — esta área será atualizada com avaliações reais da Yasali.</p>
         </div>
       </section>
 
@@ -313,9 +314,14 @@ export default function Home() {
             <p>
               Os decants permitem testar o perfume na pele e comparar opções antes de comprar o frasco. Consulte os aromas disponíveis.
             </p>
-            <a className="button button-primary" href={whatsappUrl} target="_blank" rel="noreferrer">
-              Conhecer os decants
-            </a>
+            <div className="button-row">
+              <a className="button button-primary" href="/decants">
+                Conhecer os decants
+              </a>
+              <a className="button button-secondary" href="/body-splash">
+                Ver body splash
+              </a>
+            </div>
           </div>
           <div className="decants-media">
             <img
@@ -384,15 +390,15 @@ export default function Home() {
       <footer className="site-footer">
         <div className="container footer-grid">
           <div className="footer-brand">
-            <span className="footer-kicker">Yasali</span>
-            <strong>Perfumaria</strong>
+            <img className="footer-logo" src="/media/brand/yasali-logo-wordmark-transparent.png" alt="Yasali Perfumaria" width="1847" height="851" />
             <p>Perfumes árabes, importados e decants escolhidos para fazer sentido para você.</p>
           </div>
           <nav className="footer-nav" aria-label="Links do rodapé">
             <span className="footer-label">Explore</span>
             <a href="#categorias">Por onde começar</a>
             <a href="/catalogo">Ver catálogo</a>
-            <a href="#decants">Decants</a>
+            <a href="/decants">Decants</a>
+            <a href="/body-splash">Body splash</a>
           </nav>
           <div className="footer-contact">
             <span className="footer-label">Fale com a Yasali</span>

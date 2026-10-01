@@ -81,6 +81,41 @@ for (const entry of await readdir(nextStaticRoot, { withFileTypes: true })) {
 }
 await writeFile(path.join(stageRoot, "index.html"), html, "utf8");
 
+async function writeStaticPage(pathname, directoryName) {
+  const pageResponse = await worker.fetch(
+    new Request(`${publicSiteUrl}${pathname}`, {
+      headers: { accept: "text/html", host: publicSite.host, "x-forwarded-host": publicSite.host, "x-forwarded-proto": publicSite.protocol.replace(":", "") },
+    }),
+    {
+      ASSETS: {
+        fetch: async () => new Response("Not found", { status: 404 }),
+      },
+    },
+    {
+      waitUntil() {},
+      passThroughOnException() {},
+    },
+  );
+
+  if (!pageResponse.ok) {
+    throw new Error(`Não foi possível renderizar ${pathname}: HTTP ${pageResponse.status}`);
+  }
+
+  let pageHtml = await pageResponse.text();
+  pageHtml = pageHtml
+    .replace(/<link\b(?=[^>]*\brel=["']modulepreload["'])[^>]*>/gi, "")
+    .replace(/<link\b(?=[^>]*\brel=["'](?:shortcut icon|icon|apple-touch-icon|manifest)["'])[^>]*>/gi, "")
+    .replace(/\sdata-rsc-css-href=["'][^"']*["']/gi, "")
+    .replace(/\sdata-precedence=["'][^"']*["']/gi, "");
+  pageHtml = pageHtml.replace("</head>", `${staticIconHead}</head>`);
+  const pageDirectory = path.join(stageRoot, directoryName);
+  await mkdir(pageDirectory, { recursive: true });
+  await writeFile(path.join(pageDirectory, "index.html"), pageHtml, "utf8");
+}
+
+await writeStaticPage("/decants", "decants");
+await writeStaticPage("/body-splash", "body-splash");
+
 const catalogResponse = await worker.fetch(
   new Request(`${publicSiteUrl}/catalogo`, {
     headers: { accept: "text/html", host: publicSite.host, "x-forwarded-host": publicSite.host, "x-forwarded-proto": publicSite.protocol.replace(":", "") },
@@ -192,6 +227,8 @@ for (const expected of ["Asad", "Notas em destaque", "application/ld+json", "Con
 const sitemapUrls = [
   `${publicSiteUrl}/`,
   `${publicSiteUrl}/catalogo/`,
+  `${publicSiteUrl}/decants/`,
+  `${publicSiteUrl}/body-splash/`,
   ...catalog.map((product) => `${publicSiteUrl}/produto/${product.slug}/`),
 ];
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.map((url) => `  <url><loc>${url}</loc></url>`).join("\n")}\n</urlset>\n`;
