@@ -22,7 +22,7 @@ export function ProductCard({ product, whatsappContext }: ProductCardProps) {
     <article className="product-card">
       <a className="product-image-link" href={productUrl} aria-label={`Ver detalhes de ${product.name}`}>
         <div className={`product-image product-image-${product.imageFit}`}>
-          <img src={product.image} alt={product.alt} width="1080" height="1440" loading="lazy" />
+          <img src={product.image} alt={product.alt} width="1080" height="1440" loading="lazy" decoding="async" />
         </div>
       </a>
       <div className="product-info">

@@ -20,7 +20,7 @@ export function GiftHighlights({ products }: GiftHighlightsProps) {
       <div className="gift-grid">
         {products.map((product) => (
           <a className="gift-card" href={createWhatsAppUrl({ productName: product.name, gender: product.gender, usage: product.usage, family: product.family, gift: true, intent: "Tenho interesse neste perfume para presentear." })} target="_blank" rel="noreferrer" key={product.slug}>
-            <img src={product.image} alt={product.alt} width="360" height="440" loading="lazy" />
+            <img src={product.image} alt={product.alt} width="360" height="440" loading="lazy" decoding="async" />
             <span className="gift-card-body">
               <span className="gift-card-label">{product.brand} · {product.gender}</span>
               <strong>{product.name}</strong>

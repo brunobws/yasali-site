@@ -67,7 +67,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <header className="product-page-header">
         <a className="product-back-link" href="/#destaques">Voltar ao catálogo</a>
-          <a className="product-page-brand" href="/" aria-label="Yasali Perfumaria — início"><img src="/media/brand/yasali-logo-wordmark-transparent.png" alt="Yasali Perfumaria" width="1847" height="851" /></a>
+          <a className="product-page-brand" href="/" aria-label="Yasali Perfumaria — início"><img src="/media/brand/yasali-logo-wordmark-transparent.png" alt="Yasali Perfumaria" width="1847" height="851" decoding="async" /></a>
         <a className="product-page-instagram" href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer"><span className="instagram-mark" aria-hidden="true"><span /></span> Instagram</a>
       </header>
       <div className="product-page-container">
@@ -76,7 +76,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </nav>
         <section className="product-detail" aria-labelledby="product-title">
           <div className="product-detail-media">
-            <img src={product.image} alt={product.alt} width="1080" height="1440" />
+            <img src={product.image} alt={product.alt} width="1080" height="1440" fetchPriority="high" decoding="async" />
           </div>
           <div className="product-detail-copy">
             <p className="eyebrow">{product.brand} · {product.gender}</p>
@@ -103,7 +103,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="related-products-grid">
               {related.map((candidate) => (
                 <a className="related-product-card" href={`/produto/${candidate.slug}/`} key={candidate.slug}>
-                  <img src={candidate.image} alt={candidate.alt} width="360" height="440" loading="lazy" />
+                  <img src={candidate.image} alt={candidate.alt} width="360" height="440" loading="lazy" decoding="async" />
                   <span><strong>{candidate.name}</strong><small>{candidate.family}</small></span>
                 </a>
               ))}

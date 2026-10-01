@@ -27,7 +27,7 @@ function HighlightRow({ section }: { section: HighlightSection }) {
       <div className="commercial-highlight-grid">
         {section.products.slice(0, 4).map((product) => (
           <a className="commercial-highlight-card" href={createWhatsAppUrl({ productName: product.name, gender: product.gender, usage: product.usage, family: product.family, intent: "Gostaria de saber mais sobre esta seleção." })} target="_blank" rel="noreferrer" key={product.slug}>
-            <img src={product.image} alt={product.alt} width="360" height="440" loading="lazy" />
+            <img src={product.image} alt={product.alt} width="360" height="440" loading="lazy" decoding="async" />
             <span>
               <small>{product.brand} · {product.gender}</small>
               <strong>{product.name}</strong>
