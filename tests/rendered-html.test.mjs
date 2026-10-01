@@ -26,14 +26,14 @@ async function render(pathname = "/") {
 }
 
 test("server-renders the Yasali catalog page", async () => {
-  const response = await render();
+  const response = await render("/catalogo");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
   assert.match(html, /<html lang="pt-BR">/i);
-  assert.match(html, /<title>Yasali Perfumaria \| Perfumes em Sorocaba<\/title>/i);
-  assert.match(html, /Catálogo para descobrir/);
+  assert.match(html, /<title>Catálogo de perfumes \| Yasali Perfumaria<\/title>/i);
+  assert.match(html, /Escolha seu próximo perfume\./);
   assert.match(html, /Família olfativa/);
   assert.match(html, /Asad Bourbon/);
   assert.match(html, /Asad Elixir/);

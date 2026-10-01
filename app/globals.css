@@ -74,7 +74,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-serif), Georgia, serif;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 0.98;
   letter-spacing: -0.025em;
   text-wrap: balance;
@@ -783,6 +783,25 @@ h3 {
 }
 
 @media (max-width: 599px) {
+  .catalog-page .product-info {
+    padding: 11px;
+  }
+
+  .catalog-page .product-info h3 {
+    font-size: 1.15rem;
+  }
+
+  .catalog-page .product-description {
+    display: none;
+  }
+
+  .catalog-page .product-cta {
+    min-height: 34px;
+    margin-top: 9px;
+    padding-top: 8px;
+    font-size: 0.64rem;
+  }
+
   .hero {
     padding-block: 30px 56px;
   }
@@ -805,8 +824,8 @@ h3 {
 
   .floating-socials {
     right: 14px;
-    top: 82px;
-    bottom: auto;
+    top: auto;
+    bottom: 84px;
   }
 
   .floating-social-whatsapp {
@@ -1269,10 +1288,24 @@ h3 {
 }
 
 .product-page-brand {
+  display: flex;
+  align-items: center;
   color: var(--color-deep);
   font-family: var(--font-serif);
   font-size: 1.6rem;
   text-decoration: none;
+}
+
+.product-page-brand img {
+  width: 150px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.product-page-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
 }
 
 .product-page-container {
@@ -1452,8 +1485,20 @@ h3 {
     font-size: 1.3rem;
   }
 
+  .product-page-brand img {
+    width: 120px;
+    height: 42px;
+  }
+
   .product-page-instagram {
-    display: none;
+    display: inline-flex;
+    gap: 5px;
+    font-size: 0.64rem;
+  }
+
+  .product-page-instagram .instagram-mark {
+    width: 15px;
+    height: 15px;
   }
 
   .product-detail {
@@ -1547,6 +1592,10 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.product-image-link {
+  display: block;
 }
 
 .product-family::before {
@@ -2368,7 +2417,17 @@ h3 {
   font-size: 0.78rem;
 }
 
-.catalog-page .product-description,
+.catalog-page .product-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 13px 0 0;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 .catalog-page .product-notes {
   display: none;
 }
