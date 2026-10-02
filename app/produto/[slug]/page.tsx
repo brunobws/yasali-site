@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { products } from "../../lib/catalog";
 import { createWhatsAppUrl } from "../../lib/whatsapp";
+import { absoluteUrl } from "../../lib/site";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -31,6 +32,9 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       title,
       description,
       type: "website",
+      url: absoluteUrl(`/produto/${product.slug}/`),
+      siteName: "Yasali Perfumaria",
+      locale: "pt_BR",
       images: [{ url: product.image, alt: product.alt }],
     },
   };
@@ -52,7 +56,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
     name: product.name,
     brand: { "@type": "Brand", name: product.brand },
     description: product.description,
-    image: product.image,
+    url: absoluteUrl(`/produto/${product.slug}/`),
+    image: absoluteUrl(product.image),
     category: product.category,
     additionalProperty: [
       { "@type": "PropertyValue", name: "Família olfativa", value: product.family },

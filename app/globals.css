@@ -833,7 +833,7 @@ h3 {
   }
 
   .floating-social-whatsapp {
-    display: grid;
+    display: none;
   }
 
   .categories-illustration {
@@ -2264,6 +2264,21 @@ h3 {
   background: #216c3d;
 }
 
+@media (max-width: 767px) {
+  .floating-socials {
+    right: 14px;
+    bottom: 84px;
+  }
+
+  .floating-social-whatsapp {
+    display: none;
+  }
+
+  .floating-socials-mobile-whatsapp .floating-social-whatsapp {
+    display: grid;
+  }
+}
+
 .floating-social svg {
   width: 22px;
   height: 22px;
@@ -3008,6 +3023,28 @@ h3 {
 
   .product-info h3 {
     font-size: 1.72rem;
+  }
+}
+
+@media (max-width: 599px) {
+  .selection-grid-splash {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .selection-grid-splash .selection-card-body {
+    padding: 12px;
+  }
+
+  .selection-grid-splash .selection-card h3 {
+    min-height: 2.2em;
+    margin: 6px 0 10px;
+    font-size: 1.2rem;
+  }
+
+  .selection-grid-splash .selection-card .text-link {
+    font-size: 0.68rem;
+    line-height: 1.25;
   }
 }
 

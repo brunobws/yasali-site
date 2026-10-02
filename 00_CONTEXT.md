@@ -10,6 +10,7 @@
 - Stack atual: Vinext + React 19 + Vite + TypeScript.
 - Deploy operacional atual: exportação estática para Hostinger.
 - Repositório: https://github.com/brunobws/yasali-site.
+- Domínio oficial confirmado: https://yasali.com.br.
 
 ## Hipóteses
 
@@ -19,7 +20,7 @@
 
 ## Pendências
 
-Estoque, ranking real de vendas, entrega, pagamento, políticas legais, domínio definitivo e decisão sobre checkout ainda precisam ser confirmados. Não implementar essas hipóteses como fatos.
+Estoque, ranking real de vendas, entrega, pagamento, políticas legais e decisão sobre checkout ainda precisam ser confirmados. Não implementar essas hipóteses como fatos.
 
 ## Fonte de contexto
 

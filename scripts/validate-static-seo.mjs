@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
-const publicUrl = "https://navajowhite-pigeon-349040.hostingersite.com";
+const publicUrl = "https://yasali.com.br";
 const catalog = JSON.parse(await readFile(path.join(root, "app", "data", "products.json"), "utf8"));
 const home = await readFile(path.join(dist, "index.html"), "utf8");
 const catalogPage = await readFile(path.join(dist, "catalogo", "index.html"), "utf8");

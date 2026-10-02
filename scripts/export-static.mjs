@@ -3,7 +3,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
 
 const projectRoot = path.resolve(fileURLToPath(new URL("../", import.meta.url)));
-const publicSiteUrl = (process.env.PUBLIC_SITE_URL ?? "https://navajowhite-pigeon-349040.hostingersite.com").replace(/\/$/, "");
+const publicSiteUrl = (process.env.PUBLIC_SITE_URL ?? "https://yasali.com.br").replace(/\/$/, "");
 const publicSite = new URL(publicSiteUrl);
 const buildRoot = path.join(projectRoot, "dist");
 const clientRoot = path.join(buildRoot, "client");
@@ -191,6 +191,9 @@ await writeFile(
     "  Header always set X-Frame-Options \"SAMEORIGIN\"",
     "  Header always set Referrer-Policy \"strict-origin-when-cross-origin\"",
     "  Header always set Permissions-Policy \"camera=(), microphone=(), geolocation=()\"",
+    "  Header always set Strict-Transport-Security \"max-age=31536000; includeSubDomains\"",
+    "  Header always set Content-Security-Policy \"default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://wa.me https://www.instagram.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.facebook.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'none'; upgrade-insecure-requests\"",
+    "  Header always set Cross-Origin-Resource-Policy \"same-origin\"",
     "</IfModule>",
     "",
     "<IfModule mod_expires.c>",
@@ -199,6 +202,13 @@ await writeFile(
     "  ExpiresByType image/png \"access plus 1 year\"",
     "  ExpiresByType image/webp \"access plus 1 year\"",
     "  ExpiresByType text/css \"access plus 1 month\"",
+    "  ExpiresByType application/javascript \"access plus 1 year\"",
+    "</IfModule>",
+    "",
+    "<IfModule mod_headers.c>",
+    "  <FilesMatch \"^_next/static/.*\\.(?:css|js|woff2)$\">",
+    "    Header set Cache-Control \"public, max-age=31536000, immutable\"",
+    "  </FilesMatch>",
     "</IfModule>",
     "",
   ].join("\n"),

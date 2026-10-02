@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Montserrat } from "next/font/google";
-import { headers } from "next/headers";
 import { Analytics } from "./components/Analytics";
+import { absoluteUrl, siteDescription, siteName, siteUrl } from "./lib/site";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -17,19 +17,27 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  const baseUrl = `${protocol}://${host}`;
-  const title = "Yasali Perfumaria | Perfumes em Sorocaba";
-  const description = "Perfumes árabes, importados e decants em Sorocaba. Encontre uma fragrância para você com atendimento próximo da Yasali.";
-  const socialImage = new URL("/og.png", baseUrl).toString();
-
-  return {
-    title,
-    description,
+export const metadata: Metadata = {
+    metadataBase: new URL(siteUrl),
+    title: "Yasali Perfumaria | Perfumes em Sorocaba",
+    description: siteDescription,
+    applicationName: siteName,
+    authors: [{ name: siteName, url: siteUrl }],
+    creator: siteName,
+    publisher: siteName,
+    category: "shopping",
     alternates: { canonical: "/" },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     manifest: "/site.webmanifest",
     icons: {
       icon: [
@@ -43,19 +51,21 @@ export async function generateMetadata(): Promise<Metadata> {
       apple: [{ url: "/media/brand/yasali-icon-transparent.png?v=1", sizes: "180x180", type: "image/png" }],
     },
     openGraph: {
-      title,
-      description,
+      title: "Yasali Perfumaria | Perfumes em Sorocaba",
+      description: siteDescription,
       type: "website",
-      images: [{ url: socialImage, width: 1792, height: 896, alt: "Yasali Perfumaria — perfumes árabes e importados" }],
+      url: siteUrl,
+      siteName,
+      locale: "pt_BR",
+      images: [{ url: absoluteUrl("/og.jpg"), width: 1792, height: 896, alt: "Yasali Perfumaria — perfumes árabes e importados" }],
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
-      images: [socialImage],
+      title: "Yasali Perfumaria | Perfumes em Sorocaba",
+      description: siteDescription,
+      images: [absoluteUrl("/og.jpg")],
     },
-  };
-}
+};
 
 export default function RootLayout({
   children,

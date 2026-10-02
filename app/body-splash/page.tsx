@@ -2,6 +2,7 @@
 
 import { FloatingSocials } from "../components/FloatingSocials";
 import { createWhatsAppUrl } from "../lib/whatsapp";
+import { createPageMetadata } from "../lib/site";
 
 const bodySplashes = [
   ["Yara", "Lattafa", "/media/body-splash/yara/yara-body-splash-front-01.jpg"],
@@ -14,11 +15,7 @@ const bodySplashes = [
 
 const whatsappUrl = createWhatsAppUrl({ intent: "Olá, vim pela página de body splash e gostaria de saber quais opções estão disponíveis." });
 
-export const metadata = {
-  title: "Body splash | Yasali Perfumaria",
-  description: "Conheça a seleção de body splashes da Yasali e consulte as opções disponíveis.",
-  alternates: { canonical: "/body-splash" },
-};
+export const metadata = createPageMetadata("Body splash | Yasali Perfumaria", "Conheça a seleção de body splashes da Yasali e consulte as opções disponíveis.", "/body-splash/");
 
 export default function BodySplashPage() {
   return (
@@ -48,7 +45,7 @@ export default function BodySplashPage() {
       <section className="selection-gallery-strip"><div className="container selection-strip-grid"><img src="/media/body-splash/sets/body-splash-collection-02-angham-mayar-teriaq.jpg" alt="Body splashes Angham, Mayar e Teriaq" width="1080" height="1440" loading="lazy" /><div><p className="eyebrow">Uma fragrância mais leve</p><h2>Escolha pelo seu jeito de usar.</h2><p>Quer algo para o dia, para reaplicar ou para presentear? Fale com a Yasali e encontre a opção mais adequada.</p><a className="text-link" href={whatsappUrl} target="_blank" rel="noreferrer">Pedir uma indicação →</a></div></div></section>
 
       <footer className="site-footer"><div className="container footer-grid"><div className="footer-brand"><img className="footer-logo" src="/media/brand/yasali-logo-wordmark-transparent.png" alt="Yasali Perfumaria" width="1847" height="851" /><p>Perfumes árabes, importados e decants escolhidos para fazer sentido para você.</p></div><nav className="footer-nav" aria-label="Links do rodapé"><span className="footer-label">Explore</span><a href="/">Início</a><a href="/catalogo">Catálogo</a><a href="/decants">Decants</a><a href="/body-splash">Body splash</a></nav><div className="footer-contact"><span className="footer-label">Fale com a Yasali</span><p>Sorocaba — SP</p><a href="https://www.instagram.com/yasali.perfumaria/" target="_blank" rel="noreferrer">Instagram <span>@yasali.perfumaria</span></a><a className="footer-whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer">Chamar no WhatsApp</a></div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} Yasali Perfumaria.</p><p>Catálogo sujeito à confirmação pelo atendimento.</p></div></footer>
-      <FloatingSocials />
+      <FloatingSocials showWhatsappOnMobile />
     </main>
   );
 }

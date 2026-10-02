@@ -5,6 +5,7 @@
 - `public/media/brand/`: logo e ícone.
 - `public/media/products/`: imagens de produtos nomeadas por slug.
 - `public/media/generated/`: hero e imagens editoriais geradas, com rastreabilidade em `assets/generated/README.md`.
+- `public/og.jpg`: banner social otimizado para compartilhamento de links (1792 × 896).
 - `public/favicon*.png`, `public/apple-touch-icon.png`, `public/icon-*.png`, `public/site.webmanifest`.
 
 ## Fontes e revisão

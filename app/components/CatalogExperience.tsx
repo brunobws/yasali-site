@@ -7,6 +7,7 @@ import { products } from "../lib/catalog";
 import { CatalogEmptyState } from "./CatalogEmptyState";
 import { CatalogFilters } from "./CatalogFilters";
 import { ProductGrid } from "./ProductGrid";
+import { absoluteUrl } from "../lib/site";
 
 const whatsappUrl = "https://wa.me/5515981744696?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Yasali%20e%20gostaria%20de%20conhecer%20os%20perfumes.";
 
@@ -75,7 +76,7 @@ export function CatalogExperience() {
       "@type": "ListItem",
       position: index + 1,
       name: product.name,
-      url: `/produto/${product.slug}/`,
+      url: absoluteUrl(`/produto/${product.slug}/`),
     })),
   };
   const clearFilters = () => {

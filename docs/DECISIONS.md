@@ -19,3 +19,9 @@
 ## D-005 — Fonte legada preservada
 
 `CONTEXTO_DO_PROJETO.md` continua existindo; a pasta `client/` organiza cópias operacionais sem apagar o original.
+
+## D-006 — Domínio oficial e sinais de entidade
+
+**Status:** vigente.
+
+`https://yasali.com.br` é o domínio canônico do site. Sitemap, robots, canonical, Open Graph, JSON-LD e documentação para agentes usam esse domínio por padrão. Informações locais ficam limitadas a Sorocaba — SP até que endereço e horário sejam confirmados.

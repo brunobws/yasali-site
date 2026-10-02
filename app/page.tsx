@@ -4,6 +4,7 @@
 
 import { products } from "./lib/catalog";
 import { FloatingSocials } from "./components/FloatingSocials";
+import { absoluteUrl, businessStructuredData, siteUrl, websiteStructuredData } from "./lib/site";
 
 const whatsappUrl =
   "https://wa.me/5515981744696?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Yasali%20e%20gostaria%20de%20conhecer%20os%20perfumes.";
@@ -30,15 +31,22 @@ export default function Home() {
   const featuredProducts = products.filter((product) => product.featured).slice(0, 4);
   const catalogStructuredData = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Catálogo de perfumes Yasali",
-    numberOfItems: products.length,
-    itemListElement: products.map((product, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: product.name,
-      url: `/produto/${product.slug}/`,
-    })),
+    "@graph": [
+      { ...businessStructuredData },
+      { ...websiteStructuredData },
+      {
+        "@type": "ItemList",
+        "@id": `${siteUrl}/#catalogo`,
+        name: "Catálogo de perfumes Yasali",
+        numberOfItems: products.length,
+        itemListElement: products.map((product, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: product.name,
+          url: absoluteUrl(`/produto/${product.slug}/`),
+        })),
+      },
+    ],
   };
 
   return (
@@ -325,10 +333,10 @@ export default function Home() {
           </div>
           <div className="decants-media">
             <img
-              src="/media/generated/lifestyle/decants-pastel-lifestyle-01.webp"
-              alt="Composição editorial com seis frascos pequenos em tons pastel"
-              width="1536"
-              height="1024"
+              src="/media/decants/sets/decants-set-01-sabah-al-ward-fakhar-rose-musamam-edited.webp"
+              alt="Três decants de Sabah Al Ward, Fakhar Rose e Musamam em composição de estúdio"
+              width="1072"
+              height="1424"
               loading="lazy"
             />
           </div>

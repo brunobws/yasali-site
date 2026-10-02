@@ -22,7 +22,7 @@ check((await stat(path.join(dist, "sitemap.xml"))).size > 100, "sitemap ausente 
 check((await stat(path.join(dist, "robots.txt"))).size > 20, "robots.txt ausente ou vazio");
 
 // Headers de segurança do pacote Hostinger.
-for (const header of ["X-Content-Type-Options", "X-Frame-Options", "Referrer-Policy", "Permissions-Policy"]) {
+for (const header of ["X-Content-Type-Options", "X-Frame-Options", "Referrer-Policy", "Permissions-Policy", "Strict-Transport-Security", "Content-Security-Policy", "Cross-Origin-Resource-Policy"]) {
   check(htaccess.includes(`Header always set ${header}`), `header ausente: ${header}`);
 }
 
